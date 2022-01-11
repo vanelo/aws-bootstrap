@@ -6,8 +6,8 @@ Parameters:
   EC2AMI:
     Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
     Default: '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2'
-
 Resources:
+
   SecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -24,7 +24,6 @@ Resources:
       Tags:
         - Key: Name
           Value: !Ref AWS::StackName
-
   InstanceRole:
     Type: "AWS::IAM::Role"
     Properties:
@@ -41,18 +40,16 @@ Resources:
       Tags:
         - Key: Name
           Value: !Ref AWS::StackName
-
   InstanceProfile:
     Type: "AWS::IAM::InstanceProfile"
     Properties:
       Roles:
         - Ref: InstanceRole
-
   Instance:
     Type: AWS::EC2::Instance
     CreationPolicy: 
       ResourceSignal:
-        Timeout: PT15M
+        Timeout: PT50M
         Count: 1
     Metadata:
       AWS::CloudFormation::Init:
@@ -94,14 +91,14 @@ Resources:
             . /home/ec2-user/.bashrc
 
             # Install NVM, NPM, Node.JS
-            nvm alias default v12.7.0
-            nvm install v12.7.0
-            nvm use v12.7.0
+            nvm alias default v12.22
+            nvm install v12.22
+            nvm use v12.22
 
             # Download latest code, unzip it into /home/ec2-user/app
-            wget https://github.com/vanelo/aws-bootstrap/archive/master.zip 
-            unzip master.zip
-            mv aws-bootstrap-master app
+            wget https://github.com/vanelo/aws-bootstrap/archive/refs/heads/main.zip
+            unzip main.zip
+            mv aws-bootstrap-main app
 
             # Create log directory
             mkdir -p /home/ec2-user/app/logs

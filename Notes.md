@@ -10,3 +10,16 @@ aws ec2 describe-instances --profile devVane
 
 # Let deploy script executable
 chmod +x deploy-infra.sh
+
+# Github access token
+
+    NOTE: Before we run the code, we will require a Github access token so you don’t need to put in your username and password whenever you access Github through the terminal widget. To generate an access token, go to https://github.com/settings/tokens/new and click Generate new token. Give it repo and admin:repo_hook permissions, and click Generate token.
+
+    NOTE: You just have to put your Github token ONCE in the terminal widget, it will persist that information in all the other terminal widgets automatically.
+
+# Run and push the code
+
+    NOTE: It will automatically push the code to your Github too.
+
+    NOTE: In deploy-infra.sh file, on Line #1 (which is also highlighted in the code), another file by the name of aws_credentials is getting executed to set your AWS credentials but you can’t see it. Similarly in github.sh, on Line #1, github_credentials.sh is getting executed to set your Github credentials. We have hidden these two files so your main focus is on the code, not to set up the credentials.
+
