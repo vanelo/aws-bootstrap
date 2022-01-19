@@ -23,3 +23,10 @@ chmod +x deploy-infra.sh
 
     NOTE: In deploy-infra.sh file, on Line #1 (which is also highlighted in the code), another file by the name of aws_credentials is getting executed to set your AWS credentials but you can’t see it. Similarly in github.sh, on Line #1, github_credentials.sh is getting executed to set your Github credentials. We have hidden these two files so your main focus is on the code, not to set up the credentials.
 
+# Github accessToken generation (Replace <username> with your GitHub username and Replace <token> with your GitHub access token)
+```
+mkdir -p ~/.github
+echo "aws-bootstrap" > ~/.github/aws-bootstrap-repo
+echo "<username>" > ~/.github/aws-bootstrap-owner
+echo "<token>" > ~/.github/aws-bootstrap-access-token
+```
