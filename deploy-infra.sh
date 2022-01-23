@@ -1,4 +1,3 @@
-source aws_credentials.sh
 mkdir -p ~/.github
 echo "aws-bootstrap" > ~/.github/aws-bootstrap-repo
 echo "vanelo" > ~/.github/aws-bootstrap-owner
@@ -46,9 +45,9 @@ aws cloudformation deploy \
     GitHubPersonalAccessToken=$GH_ACCESS_TOKEN \
     CodePipelineBucket=$CODEPIPELINE_BUCKET
 
-    # If the deploy succeeded, show the DNS name of the created instance
+# If the deploy succeeded, show the DNS name of the created instance
 if [ $? -eq 0 ]; then
   aws cloudformation list-exports \
-    --profile $CLI_PROFILE \
-    --query "Exports[?Name=='InstanceEndpoint'].Value" 
+    --profile awsbootstrap \
+    --query "Exports[?starts_with(Name,'InstanceEndpoint')].Value"
 fi
