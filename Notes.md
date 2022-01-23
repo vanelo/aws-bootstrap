@@ -30,3 +30,10 @@ echo "aws-bootstrap" > ~/.github/aws-bootstrap-repo
 echo "<username>" > ~/.github/aws-bootstrap-owner
 echo "<token>" > ~/.github/aws-bootstrap-access-token
 ```
+
+## After create the code papeline
+we can deploy our infrastructure updates. But first, we need to delete our stack from the CloudFormation console, because the changes we’ve made will not trigger CloudFormation to tear down our EC2 instance and start a new one. So, let’s delete our stack, and recreate it by running the deploy-infra.sh script.
+
+`./deploy-infra.sh`
+
+
